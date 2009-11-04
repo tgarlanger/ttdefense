@@ -55,7 +55,7 @@ FFLAGS=
 ASFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=/usr/lib/libSDL.a /usr/lib/libSDL_image.a -lSDLmain
+LDLIBSOPTIONS=/usr/lib/libSDL.a /usr/lib/libSDL_image.a -lSDLmain -lSDL_image
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
@@ -67,7 +67,7 @@ dist/Debug/GNU-Linux-x86/ttdefense: /usr/lib/libSDL_image.a
 
 dist/Debug/GNU-Linux-x86/ttdefense: ${OBJECTFILES}
 	${MKDIR} -p dist/Debug/GNU-Linux-x86
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/ttdefense ${OBJECTFILES} ${LDLIBSOPTIONS} 
+	${LINK.cc} -lSDL -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/ttdefense ${OBJECTFILES} ${LDLIBSOPTIONS} 
 
 ${OBJECTDIR}/AWG2dEntity.o: nbproject/Makefile-${CND_CONF}.mk AWG2dEntity.cpp 
 	${MKDIR} -p ${OBJECTDIR}
