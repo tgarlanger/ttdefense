@@ -54,7 +54,9 @@
             <linkerLibFileItem>/usr/lib/libSDL.a</linkerLibFileItem>
             <linkerLibFileItem>/usr/lib/libSDL_image.a</linkerLibFileItem>
             <linkerLibLibItem>SDLmain</linkerLibLibItem>
+            <linkerLibLibItem>SDL_image</linkerLibLibItem>
           </linkerLibItems>
+          <commandLine>-lSDL</commandLine>
         </linkerTool>
       </compileType>
     </conf>
