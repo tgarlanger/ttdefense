@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="62">
+  <logicalFolder name="root" displayName="root" projectFiles="true">
+    <logicalFolder name="HeaderFiles"
+                   displayName="Header Files"
+                   projectFiles="true">
+      <itemPath>AWG2dAnimation.h</itemPath>
+      <itemPath>AWG2dApp.h</itemPath>
+      <itemPath>AWG2dConsts.h</itemPath>
+      <itemPath>AWG2dEntity.h</itemPath>
+      <itemPath>AWG2dEvent.h</itemPath>
+      <itemPath>AWG2dMap.h</itemPath>
+      <itemPath>AWG2dScrollAnim.h</itemPath>
+      <itemPath>AWG2dSprite.h</itemPath>
+      <itemPath>AWG2dTile.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="ResourceFiles"
+                   displayName="Resource Files"
+                   projectFiles="true">
+    </logicalFolder>
+    <logicalFolder name="SourceFiles"
+                   displayName="Source Files"
+                   projectFiles="true">
+      <itemPath>AWG2dAnimation.cpp</itemPath>
+      <itemPath>AWG2dApp.cpp</itemPath>
+      <itemPath>AWG2dEntity.cpp</itemPath>
+      <itemPath>AWG2dEvent.cpp</itemPath>
+      <itemPath>AWG2dMap.cpp</itemPath>
+      <itemPath>AWG2dScrollAnim.cpp</itemPath>
+      <itemPath>AWG2dSprite.cpp</itemPath>
+      <itemPath>AWG2dTile.cpp</itemPath>
+      <itemPath>main.cpp</itemPath>
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <sourceRootList>
+    <Elem>.</Elem>
+  </sourceRootList>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Debug" type="1">
+      <toolsSet>
+        <developmentServer>localhost</developmentServer>
+        <compilerSet>GNU|GNU</compilerSet>
+        <platform>2</platform>
+      </toolsSet>
+      <compileType>
+        <linkerTool>
+          <linkerLibItems>
+            <linkerLibFileItem>/usr/lib/libSDL.a</linkerLibFileItem>
+            <linkerLibFileItem>/usr/lib/libSDL_image.a</linkerLibFileItem>
+            <linkerLibLibItem>SDLmain</linkerLibLibItem>
+          </linkerLibItems>
+        </linkerTool>
+      </compileType>
+    </conf>
+    <conf name="Release" type="1">
+      <toolsSet>
+        <developmentServer>localhost</developmentServer>
+        <compilerSet>GNU|GNU</compilerSet>
+        <platform>2</platform>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <developmentMode>5</developmentMode>
+        </cTool>
+        <ccTool>
+          <developmentMode>5</developmentMode>
+        </ccTool>
+        <fortranCompilerTool>
+          <developmentMode>5</developmentMode>
+        </fortranCompilerTool>
+        <linkerTool>
+          <linkerLibItems>
+          </linkerLibItems>
+        </linkerTool>
+      </compileType>
+    </conf>
+  </confs>
+</configurationDescriptor>
