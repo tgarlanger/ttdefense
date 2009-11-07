@@ -20,6 +20,8 @@
 #include <fstream>
 
 #include "AWG2dMap.h"
+#include "AWG2dTile.h"
+#include "AWG2dSprite.h"
 
 AWG2dMap::AWG2dMap()
 {
@@ -29,7 +31,7 @@ AWG2dMap::~AWG2dMap()
 {
 }
 
-bool AWG2dMap::Load(char *strfile, const std::vector<SDL_Surface*> &sdlSpritelist)
+bool AWG2dMap::Load(char *strfile, std::vector<SDL_Surface*> &sdlSpritelist)
 {
 	// Step 1:	open file
 	std::ifstream infile;
@@ -62,6 +64,9 @@ bool AWG2dMap::Load(char *strfile, const std::vector<SDL_Surface*> &sdlSpritelis
 	char *strTemp = new char[256];
 	int iIndex;
 	SDL_Surface *sdlTemp = NULL;
+        AWG2dTile *tileTemp = NULL;
+        int iRows;
+        int iCols;
 	
 	for ( int i = 0; i < iNumTiles; i++ )
 	{
@@ -84,16 +89,39 @@ bool AWG2dMap::Load(char *strfile, const std::vector<SDL_Surface*> &sdlSpritelis
 		}
 
 		// 3) Read temp SDL_Surface;
-		
+                sdlTemp = AWG2dSprite::Load(strTemp);
+
+                // 4) Push it to the back of the vector
+                sdlSpritelist.push_back(sdlTemp);
+
+                // 5) save address of last item to AWG2dTile
+                tileTemp = new AWG2dTile(sdlSpritelist.back());
+
+                //AWG2dTile::staticTileList.push_back(tileTemp);
 	}
 
 	// Step 4:	Read number of rows
+        infile >> iRows;
 
 	// Step 5:	Read number of columns
+        infile >> iCols;
 
 	// Step 6:	Resize map
+        m_veciMap.resize(iRows);
+
+        for (int i = 0; i < iRows; i++)
+        {
+            m_veciMap[i].resize(iCols,0);
+        }
 
 	// Step 7:	Read each individual cell
+        for (int j = 0; j < iRows; j++)
+        {
+            for (int k = 0; k < iCols; k++)
+            {
+                infile >> m_veciMap[j][k];
+            }
+        }
 }
 
 void AWG2dMap::Render(SDL_Surface *sdlSurfaceDisplay)
@@ -112,5 +140,5 @@ int AWG2dMap::GetCols()
 
 int AWG2dMap::GetAt(int iRow, int iCol)
 {
-	return m_iMap[iRow][iCol];
+	return m_veciMap[iRow][iCol];
 }

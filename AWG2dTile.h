@@ -30,14 +30,17 @@
 class AWG2dTile
 {
 private:
-	SDL_Surface *m_sdlSurfaceTile;
+    SDL_Surface *m_sdlSurfaceTile;
 
 public:
-	AWG2dTile();
+    // Probably Not Needed:
+    AWG2dTile();
 
-	~AWG2dTile();
+    AWG2dTile(SDL_Surface *sdlSurface);
 
-	void Render(SDL_Surface *sdlSurfaceDisplay);
-	
-	static std::vector<AWG2dTile*> staticTileList;
+    ~AWG2dTile();
+
+    void Render(SDL_Surface *sdlSurfaceDisplay);
+
+    static std::vector<AWG2dTile*> staticTileList;
 };

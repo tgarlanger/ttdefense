@@ -35,14 +35,16 @@ private:
 	int m_iRows;
 	int m_iCols;
 
-	std::vector< std::vector<int> > m_iMap;
+	std::vector< std::vector<int> > m_veciMap;
+
+        std::vector<AWG2dTile> m_vectileTiles;
 
 public:
 	AWG2dMap();
 
 	~AWG2dMap();
 
-	bool Load(char *strfile, const std::vector<SDL_Surface*> &sdlSpritelist);
+	bool Load(char *strfile, std::vector<SDL_Surface*> &sdlSpritelist);
 
 	void Render(SDL_Surface *sdlSurfaceDisplay);
 
