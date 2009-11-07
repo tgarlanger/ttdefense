@@ -17,4 +17,20 @@
 // along with this program; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor Boston, MA 02110-1301,  USA
 
- 
+#include "AWG2dTile.h"
+
+std::vector<AWG2dTile*> AWG2dTile::staticTileList;
+
+AWG2dTile::AWG2dTile(SDL_Surface *sdlSurface)
+{
+    // Save the index of the surface
+    m_sdlSurfaceTile = sdlSurface;
+
+    // Now push this tile to the back
+    staticTileList.push_back(this);
+}
+
+AWG2dTile::~AWG2dTile()
+{
+    // Nothing Needed, deletion of SDL_Surface is handled elsewhere
+}

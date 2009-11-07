@@ -34,7 +34,7 @@ SDL_Surface *AWG2dSprite::Load(char *strFileName)
 
 	if ((sdlSurfaceTemp = IMG_Load(strFileName)) == NULL)
 	{
-		printf("Error Loding Image: %s",strFileName);
+		printf("Error Loding Image: %s\n",strFileName);
 		return NULL;
 	}
 
