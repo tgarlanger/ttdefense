@@ -41,13 +41,57 @@ class AWG2dSprite
 private:
 
 public:
+    /**
+     * Default Constructor
+     */
+    AWG2dSprite(void);
 
-	AWG2dSprite(void);
+    /**
+     * Destructor
+     */
+    ~AWG2dSprite(void);
 
-	~AWG2dSprite(void);
+    /**
+     * Load a surface from a file
+     *
+     * \param[in] strFile string representing the file to open
+     * \return SDL_Surface or NULL if the load failed
+     */
+    static SDL_Surface *Load(char *strFileName);
 
-	static SDL_Surface *Load(char *strFileName);
-	static bool Draw(SDL_Surface *sdlSurfaceDest, SDL_Surface *sdlSurfaceSprite, int iX, int iY);
-	static bool Draw(SDL_Surface *sdlSurfaceDest, SDL_Surface *sdlSurfaceSprite, int iX, int iY, int iX2, int iY2, int iW, int iH);
-	static bool Transparent(SDL_Surface* sdlSurfaceDest, int iR, int iG, int iB);
+    /**
+     * Draws an SDL_Surface to the screen
+     *
+     * \param[out] sdlSurfaceDisplay SDL_Surfacce to render to
+     * \param[in] sdlSurfaceSprite SDL_Surface to draw
+     * \param[in] iX The x coordinate to draw at
+     * \param[in] iY the y coordinate to draw at
+     * \return wheter the draw was successful
+     */
+    static bool Draw(SDL_Surface *sdlSurfaceDest, SDL_Surface *sdlSurfaceSprite, int iX, int iY);
+
+    /**
+     * Draws a segment of an SDL_Surface to the screen
+     *
+     * \param[out] sdlSurfaceDisplay SDL_Surfacce to render to
+     * \param[in] sdlSurfaceSprite SDL_Surface to draw
+     * \param[in] iX The x coordinate to draw at
+     * \param[in] iY the y coordinate to draw at
+     * \param[in] iX2 The x coordinate of the SDL_Surface segment to draw
+     * \param[in] iY2 The y coordinate of the SDL_Surface segment to draw
+     * \param[in] iW The width of the SDL_Surface segment to draw
+     * \param[in] iH The height of the SDL_Surface segment to draw
+     * \return wheter the draw was successful
+     */
+    static bool Draw(SDL_Surface *sdlSurfaceDest, SDL_Surface *sdlSurfaceSprite, int iX, int iY, int iX2, int iY2, int iW, int iH);
+    
+    /**
+     * Sets the transparency color of an SDL_Surface
+     * 
+     * \param[out] sdlSurfaceDest The SDL_Surface to apply Transparency to
+     * \param[in] iR The red component of the transparent color
+     * \param[in] iG The green component of the transparent color
+     * \param[in] iB The blue component of the transparent color
+     */
+    static bool Transparent(SDL_Surface* sdlSurfaceDest, int iR, int iG, int iB);
 };
