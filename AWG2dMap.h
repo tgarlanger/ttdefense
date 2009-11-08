@@ -73,10 +73,10 @@ public:
      * Load a map from a file
      *
      * \param[in] strFile string representing the file to open
-     * \param[in/out] sdlSpriteList list of global sprites
+     * \param[out] sdlSpriteList list of global sprites
      * \return wether or not the load was successful
      */
-    bool Load(char *strFile, std::vector<SDL_Surface*> &sdlSpritelist);
+    bool Load(char *strFile, std::vector<SDL_Surface*> & sdlSpriteList);
 
     /**
      * Draws the AWG2dMap to the screen
@@ -104,7 +104,7 @@ public:
      * Gets the value at (iRow,iCol) in the map
      *
      * \param[in] iRow Row "coordinate"
-     * \param[in] icol Column "coordinate"
+     * \param[in] iCol Column "coordinate"
      * \return value at (iRow,iCol)
      */
     int GetAt(int iRow, int iCol);

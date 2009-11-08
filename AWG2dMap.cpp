@@ -40,97 +40,97 @@ AWG2dMap::~AWG2dMap()
 {
 }
 
-bool AWG2dMap::Load(char *strFile, std::vector<SDL_Surface*> &sdlSpritelist)
+bool AWG2dMap::Load(char *strFile, std::vector<SDL_Surface*> &sdlSpriteList)
 {
-	// Step 1:	open file
-	std::ifstream infile;
+    // Step 1:	open file
+    std::ifstream infile;
 
-	infile.open(strFile);
+    infile.open(strFile);
 
-	if (!infile)
-	{
-		printf("Error opening file: %s\n",strFile);
-		return false;
-	}
+    if (!infile)
+    {
+            printf("Error opening file: %s\n",strFile);
+            return false;
+    }
 
-	// Step 2:	Read number of tiles
-	int iNumTiles;
-	
-	infile >> iNumTiles;
+    // Step 2:	Read number of tiles
+    int iNumTiles;
 
-	if ( iNumTiles < 1 )
-	{
-		printf("Invalid Number of Tiles: %d\n",iNumTiles);
-		return false;
-	}
+    infile >> iNumTiles;
 
-	// Step 3:	Read Tiles
-	//			1) Sprite index
-	//			2) File path
-	//			3) read temp SDL Surface
-	//			4) Push it to the back of the vector
-	//			5) save address of last item to AWG2dTile
-	char *strTemp = new char[256];
-	int iIndex;
-	SDL_Surface *sdlTemp = NULL;
-        AWG2dTile *tileTemp = NULL;
-        int iRows;
-        int iCols;
-	
-	for ( int i = 0; i < iNumTiles; i++ )
-	{
-		// 1) Sprite index
-		infile >> iIndex;
-		
-		if ( iIndex < 0 )
-		{
-			printf("Invalid Sprite Index: %d In Map File: %s\n",iIndex,strfile);
-			return false;
-		}
+    if ( iNumTiles < 1 )
+    {
+            printf("Invalid Number of Tiles: %d\n",iNumTiles);
+            return false;
+    }
 
-		// 2) File Path
-		infile.getline(strTemp,256);
+    // Step 3:  Read Tiles
+    //	1) Sprite index
+    //	2) File path
+    //	3) read temp SDL Surface
+    //	4) Push it to the back of the vector
+    //	5) save address of last item to AWG2dTile
+    char *strTemp = new char[256];
+    int iIndex;
+    SDL_Surface *sdlTemp = NULL;
+    AWG2dTile *tileTemp = NULL;
+    int iRows;
+    int iCols;
 
-		if ( strlen(strTemp) < 5 )
-		{
-			printf("File Path Too Short: %s\n",strTemp);
-			false;
-		}
+    for ( int i = 0; i < iNumTiles; i++ )
+    {
+        // 1) Sprite index
+        infile >> iIndex;
 
-		// 3) Read temp SDL_Surface;
-                sdlTemp = AWG2dSprite::Load(strTemp);
-
-                // 4) Push it to the back of the vector
-                sdlSpritelist.push_back(sdlTemp);
-
-                // 5) save address of last item to AWG2dTile
-                tileTemp = new AWG2dTile(sdlSpritelist.back());
-
-                //AWG2dTile::staticTileList.push_back(tileTemp);
-	}
-
-	// Step 4:	Read number of rows
-        infile >> iRows;
-
-	// Step 5:	Read number of columns
-        infile >> iCols;
-
-	// Step 6:	Resize map
-        m_veciMap.resize(iRows);
-
-        for (int i = 0; i < iRows; i++)
+        if ( iIndex < 0 )
         {
-            m_veciMap[i].resize(iCols,0);
+            printf("Invalid Sprite Index: %d In Map File: %s\n",iIndex,strFile);
+            return false;
         }
 
-	// Step 7:	Read each individual cell
-        for (int j = 0; j < iRows; j++)
+        // 2) File Path
+        infile.getline(strTemp,256);
+
+        if ( strlen(strTemp) < 5 )
         {
-            for (int k = 0; k < iCols; k++)
-            {
-                infile >> m_veciMap[j][k];
-            }
+            printf("File Path Too Short: %s\n",strTemp);
+            false;
         }
+
+        // 3) Read temp SDL_Surface;
+        sdlTemp = AWG2dSprite::Load(strTemp);
+
+        // 4) Push it to the back of the vector
+        sdlSpriteList.push_back(sdlTemp);
+
+        // 5) save address of last item to AWG2dTile
+        tileTemp = new AWG2dTile(sdlSpriteList.back());
+
+        //AWG2dTile::staticTileList.push_back(tileTemp);
+    }
+
+    // Step 4:	Read number of rows
+    infile >> iRows;
+
+    // Step 5:	Read number of columns
+    infile >> iCols;
+
+    // Step 6:	Resize map
+    m_veciMap.resize(iRows);
+
+    for (int i = 0; i < iRows; i++)
+    {
+        m_veciMap[i].resize(iCols,0);
+    }
+
+    // Step 7:	Read each individual cell
+    for (int j = 0; j < iRows; j++)
+    {
+        for (int k = 0; k < iCols; k++)
+        {
+            infile >> m_veciMap[j][k];
+        }
+    }
 }
 
 void AWG2dMap::Render(SDL_Surface *sdlSurfaceDisplay)
@@ -139,15 +139,15 @@ void AWG2dMap::Render(SDL_Surface *sdlSurfaceDisplay)
 
 int AWG2dMap::GetRows()
 {
-	return m_iRows;
+    return m_iRows;
 }
 
 int AWG2dMap::GetCols()
 {
-	return m_iCols;
+    return m_iCols;
 }
 
 int AWG2dMap::GetAt(int iRow, int iCol)
 {
-	return m_veciMap[iRow][iCol];
+    return m_veciMap[iRow][iCol];
 }

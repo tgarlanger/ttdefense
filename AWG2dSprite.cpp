@@ -27,14 +27,14 @@ AWG2dSprite::~AWG2dSprite(void)
 {
 }
 
-SDL_Surface *AWG2dSprite::Load(char *strFileName)
+SDL_Surface *AWG2dSprite::Load(char *strFile)
 {
 	SDL_Surface *sdlSurfaceTemp;
 	SDL_Surface *sdlSurfaceReturn;
 
-	if ((sdlSurfaceTemp = IMG_Load(strFileName)) == NULL)
+	if ((sdlSurfaceTemp = IMG_Load(strFile)) == NULL)
 	{
-		printf("Error Loding Image: %s\n",strFileName);
+		printf("Error Loding Image: %s\n",strFile);
 		return NULL;
 	}
 

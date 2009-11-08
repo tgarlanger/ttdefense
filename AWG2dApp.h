@@ -35,6 +35,7 @@
 #include "AWG2dEvent.h"
 #include "AWG2dAnimation.h"
 #include "AWG2dEntity.h"
+#include "AWG2dMap.h"
 
 /**
  * \class AWG2dApp AWG2dApp.h "AWG2dApp.h"
@@ -47,6 +48,7 @@
  * \see AWG2dEvent
  * \see AWG2dAnimation
  * \see AWG2dEntity
+ * \see AWG2dMap
  */
 class AWG2dApp : public AWG2dEvent
 {
@@ -59,10 +61,12 @@ private:
 
     SDL_Surface *m_sdlSurfaceBackground; /**< background image surface */
 
+    AWG2dMap m_mapActive;
+
     /**
      * List of all available sprites
      */
-    std::vector<SDL_Surface*> m_sdlSpriteArray;
+    std::vector<SDL_Surface*> m_sdlSpriteList;
 
     /**
      * Parses the command line arguments and handles settings

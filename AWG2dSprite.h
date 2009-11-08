@@ -57,12 +57,12 @@ public:
      * \param[in] strFile string representing the file to open
      * \return SDL_Surface or NULL if the load failed
      */
-    static SDL_Surface *Load(char *strFileName);
+    static SDL_Surface *Load(char *strFile);
 
     /**
      * Draws an SDL_Surface to the screen
      *
-     * \param[out] sdlSurfaceDisplay SDL_Surfacce to render to
+     * \param[out] sdlSurfaceDest SDL_Surfacce to render to
      * \param[in] sdlSurfaceSprite SDL_Surface to draw
      * \param[in] iX The x coordinate to draw at
      * \param[in] iY the y coordinate to draw at
@@ -73,7 +73,7 @@ public:
     /**
      * Draws a segment of an SDL_Surface to the screen
      *
-     * \param[out] sdlSurfaceDisplay SDL_Surfacce to render to
+     * \param[out] sdlSurfaceDest SDL_Surfacce to render to
      * \param[in] sdlSurfaceSprite SDL_Surface to draw
      * \param[in] iX The x coordinate to draw at
      * \param[in] iY the y coordinate to draw at
