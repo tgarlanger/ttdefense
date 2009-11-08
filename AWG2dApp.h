@@ -113,6 +113,7 @@ public:
      * \param[in] sym keyboard symbol
      * \param[in] mod keyboard modifiers
      * \param[in] unicode unicode value of symbol
+     * \return nothing
      */
     void OnKeyDown(SDLKey sym, SDLMod mod, Uint16 unicode);
 
