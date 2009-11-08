@@ -1,25 +1,29 @@
-/***************************************************************************
- *            AWG2dApp.h
+/**
+ * \file    AWG2dApp.h
+ * \author  Tony Garlanger <tgarlanger@gmail.com>
+ * \version 1.0
+ * \date    Sun Oct 18 16:57:07 2009
  *
- *  Sun Oct 18 16:57:07 2009
- *  Copyright  2009  Tony Garlanger
- *  <tgarlanger@gmail.com>
- ****************************************************************************/
-
-/*
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Library General Public License for more details.
- * 
+ * \section LICENSE
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation; either version 2 of
+ * the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * General Public License for more details at
+ * http://www.gnu.org/copyleft/gpl.html
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor Boston, MA 02110-1301,  USA
+ *
+ * \section DESCRIPTION
+ *
+ * The AWG2dApp class is the main controller of the application
  */
 
 #pragma once
@@ -31,42 +35,103 @@
 #include "AWG2dEvent.h"
 #include "AWG2dAnimation.h"
 #include "AWG2dEntity.h"
- 
+
+/**
+ * \class AWG2dApp AWG2dApp.h "AWG2dApp.h"
+ * \brief AWG2dApp is the main controller of the application
+ *
+ * Class handles initializing, rendering, looping and cleanup
+ *
+ * \see AWG2dSprite
+ * \see AWG2dConsts
+ * \see AWG2dEvent
+ * \see AWG2dAnimation
+ * \see AWG2dEntity
+ */
 class AWG2dApp : public AWG2dEvent
 {
 private:
-	bool m_bRunning;
-	bool m_bDebugMode;
+    bool m_bRunning;    /**< true if the application is running */
+    bool m_bDebugMode;  /**< true if the application is in debug mode */
 
-	SDL_Surface *m_sdlSurfaceDisplay;
-	SDL_Surface *m_sdlSurfaceTest;
+    SDL_Surface *m_sdlSurfaceDisplay; /**< surface to display to*/
+    SDL_Surface *m_sdlSurfaceTest; /**< used for testing */
 
-	SDL_Surface *m_sdlSurfaceBackground;
+    SDL_Surface *m_sdlSurfaceBackground; /**< background image surface */
 
-	std::vector<SDL_Surface*> m_sdlSpriteArray;
+    /**
+     * List of all available sprites
+     */
+    std::vector<SDL_Surface*> m_sdlSpriteArray;
 
-	bool HandleArgs();
+    /**
+     * Parses the command line arguments and handles settings
+     *
+     * \return wether the arguments were valid and applicaion should run
+     */
+    bool HandleArgs();
 
-	AWG2dAnimation yoshi;
+    AWG2dAnimation yoshi; /**< will be removed */
 
-	AWG2dEntity Entity1;
+    AWG2dEntity Entity1; /**< will be removed */
 	
 public:
-	AWG2dApp(void);
+    /**
+     * Default Constructor
+     */
+    AWG2dApp(void);
 
-	~AWG2dApp(void);
+    /**
+     * Destructor
+     */
+    ~AWG2dApp(void);
 
-	int Run(void);
+    /**
+     * Runs the application
+     *
+     * \return error code
+     */
+    int Run(void);
 
-	bool Init(void);
+    /**
+     * Initialize the application
+     *
+     * \returns whether or not the initialization was successful
+     */
+    bool Init(void);
 
-	void OnEvent(SDL_Event* Event);
+    /**
+     * Handles any SDL_Events that occur while running
+     *
+     * \return nothing
+     */
+    void OnEvent(SDL_Event* Event);
 
-	void OnKeyDown(SDLKey sym, SDLMod mod, Uint16 unicode);
+    /**
+     * Handles keyboard input
+     *
+     * \param[in] sym keyboard symbol
+     * \param[in] mod keyboard modifiers
+     * \param[in] unicode unicode value of symbol
+     */
+    void OnKeyDown(SDLKey sym, SDLMod mod, Uint16 unicode);
 
-	void Render(void);
+    /**
+     * Draws the AWG2dApp to the screen
+     *
+     * \return nothing
+     */
+    void Render(void);
 
-	void Loop(void);
+    /**
+     * Main loop of the application, other functions are called from here
+     *
+     * \return nothing
+     */
+    void Loop(void);
 
-	void CleanUp(void);
+    /**
+     * Cleans up application, frees memory
+     */
+    void CleanUp(void);
 };
