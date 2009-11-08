@@ -47,5 +47,5 @@ AWG2dTile::~AWG2dTile()
 
 void AWG2dTile::Render(SDL_Surface *sdlSurfaceDisplay)
 {
-    AWG2dSprite::Draw(sdlSurfaceDispaly,m_sdlSurfaceTile)
+    AWG2dSprite::Draw(sdlSurfaceDisplay,m_sdlSurfaceTile,m_iX,m_iY);
 }
