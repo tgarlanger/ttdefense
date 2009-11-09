@@ -77,15 +77,21 @@ bool AWG2dApp::Init(void)
 {
     if(SDL_Init(SDL_INIT_EVERYTHING) < 0)
     {
+        printf("SDL Init Everything failed");
         return false;
     }
 
     if((m_sdlSurfaceDisplay = SDL_SetVideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP, SDL_HWSURFACE | SDL_DOUBLEBUF)) == NULL)
     {
+        printf("Screen failed to initialize");
         return false;
     }
 
-    m_mapActive.Load("./data/maps/1.map",m_sdlSpriteList);
+    if (!m_mapActive.Load("./data/maps/1.map",m_sdlSpriteList))
+    {
+        printf("Map Failed to load!");
+        return false;
+    }
 
     /*
     if ((m_sdlSurfaceTest = AWG2dSprite::Load("./yoshi.bmp")) == NULL)
@@ -205,4 +211,12 @@ void AWG2dApp::CleanUp(void)
     AWG2dEntity::staticEntityList.clear();
 
     SDL_Quit();
+}
+
+void AWG2dApp::DebugMessage(const char *strMessage)
+{
+    if (m_bDebugMode)
+    {
+        printf(strMessage);
+    }
 }
