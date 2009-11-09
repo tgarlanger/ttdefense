@@ -75,6 +75,14 @@ private:
      */
     bool HandleArgs();
 
+    /**
+     * Display a message if in debug mode
+     *
+     * \param[in] strMessage Message to display
+     * \return nothing
+     */
+    void DebugMessage(const char *strMessage);
+
     AWG2dAnimation yoshi; /**< will be removed */
 
     AWG2dEntity Entity1; /**< will be removed */

@@ -47,10 +47,10 @@ bool AWG2dMap::Load(char *strFile, std::vector<SDL_Surface*> &sdlSpriteList)
 
     infile.open(strFile);
 
-    if (!infile)
+    if (!infile || infile.fail())
     {
-            printf("Error opening file: %s\n",strFile);
-            return false;
+        printf("Error opening file: %s\n",strFile);
+        return false;
     }
 
     // Step 2:	Read number of tiles
@@ -60,8 +60,8 @@ bool AWG2dMap::Load(char *strFile, std::vector<SDL_Surface*> &sdlSpriteList)
 
     if ( iNumTiles < 1 )
     {
-            printf("Invalid Number of Tiles: %d\n",iNumTiles);
-            return false;
+        printf("Invalid Number of Tiles: %d\n",iNumTiles);
+        return false;
     }
 
     // Step 3:  Read Tiles
@@ -70,7 +70,7 @@ bool AWG2dMap::Load(char *strFile, std::vector<SDL_Surface*> &sdlSpriteList)
     //	3) read temp SDL Surface
     //	4) Push it to the back of the vector
     //	5) save address of last item to AWG2dTile
-    char *strTemp = new char[256];
+    char strTemp[256];
     int iIndex;
     SDL_Surface *sdlTemp = NULL;
     AWG2dTile *tileTemp = NULL;
@@ -87,6 +87,10 @@ bool AWG2dMap::Load(char *strFile, std::vector<SDL_Surface*> &sdlSpriteList)
             printf("Invalid Sprite Index: %d In Map File: %s\n",iIndex,strFile);
             return false;
         }
+
+        char d = infile.get();
+
+        printf("%c",d);
 
         // 2) File Path
         infile.getline(strTemp,256);
