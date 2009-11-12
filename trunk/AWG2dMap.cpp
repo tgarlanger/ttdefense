@@ -102,7 +102,11 @@ bool AWG2dMap::Load(char *strFile, std::vector<SDL_Surface*> &sdlSpriteList)
         }
 
         // 3) Read temp SDL_Surface;
-        sdlTemp = AWG2dSprite::Load(strTemp);
+        if ((sdlTemp = AWG2dSprite::Load(strTemp)) == NULL )
+        {
+            printf("Failed loading SDL_Surface from file: %s",strTemp);
+            return false;
+        }
 
         // 4) Push it to the back of the vector
         sdlSpriteList.push_back(sdlTemp);
@@ -110,7 +114,8 @@ bool AWG2dMap::Load(char *strFile, std::vector<SDL_Surface*> &sdlSpriteList)
         // 5) save address of last item to AWG2dTile
         tileTemp = new AWG2dTile(sdlSpriteList.back());
 
-        //AWG2dTile::staticTileList.push_back(tileTemp);
+        // 6) save tile to back of tile list
+        AWG2dTile::staticTileList.push_back(tileTemp);
     }
 
     // Step 4:	Read number of rows
@@ -120,12 +125,17 @@ bool AWG2dMap::Load(char *strFile, std::vector<SDL_Surface*> &sdlSpriteList)
     infile >> iCols;
 
     // Step 6:	Resize map
-    m_veciMap.resize(iRows);
+    //m_veciMap.resize(iRows);
+    m_veciMap.reserve(iRows);
+
+    printf("set rows successful\n");
 
     for (int i = 0; i < iRows; i++)
     {
         m_veciMap[i].resize(iCols,0);
     }
+
+    printf("set cols successful\n");
 
     // Step 7:	Read each individual cell
     for (int j = 0; j < iRows; j++)

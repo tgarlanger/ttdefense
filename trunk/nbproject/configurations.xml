@@ -13,6 +13,7 @@
       <itemPath>AWG2dScrollAnim.h</itemPath>
       <itemPath>AWG2dSprite.h</itemPath>
       <itemPath>AWG2dTile.h</itemPath>
+      <itemPath>AWGVector.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -29,6 +30,7 @@
       <itemPath>AWG2dScrollAnim.cpp</itemPath>
       <itemPath>AWG2dSprite.cpp</itemPath>
       <itemPath>AWG2dTile.cpp</itemPath>
+      <itemPath>AWGVector.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"

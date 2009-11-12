@@ -39,6 +39,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/AWG2dScrollAnim.o \
 	${OBJECTDIR}/AWG2dApp.o \
 	${OBJECTDIR}/AWG2dSprite.o \
+	${OBJECTDIR}/AWGVector.o \
 	${OBJECTDIR}/AWG2dAnimation.o
 
 # C Compiler Flags
@@ -104,6 +105,11 @@ ${OBJECTDIR}/AWG2dSprite.o: nbproject/Makefile-${CND_CONF}.mk AWG2dSprite.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/AWG2dSprite.o AWG2dSprite.cpp
+
+${OBJECTDIR}/AWGVector.o: nbproject/Makefile-${CND_CONF}.mk AWGVector.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/AWGVector.o AWGVector.cpp
 
 ${OBJECTDIR}/AWG2dAnimation.o: nbproject/Makefile-${CND_CONF}.mk AWG2dAnimation.cpp 
 	${MKDIR} -p ${OBJECTDIR}

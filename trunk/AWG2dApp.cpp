@@ -75,23 +75,30 @@ bool AWG2dApp::HandleArgs()
 
 bool AWG2dApp::Init(void)
 {
+    DebugMessage("Begin Initialization:\n\n");
+    DebugMessage("\tInitializing Everything...");
     if(SDL_Init(SDL_INIT_EVERYTHING) < 0)
     {
         printf("SDL Init Everything failed");
         return false;
     }
+    DebugMessage("Done!\n");
 
+    DebugMessage("\tInitializing Video Mode...");
     if((m_sdlSurfaceDisplay = SDL_SetVideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP, SDL_HWSURFACE | SDL_DOUBLEBUF)) == NULL)
     {
         printf("Screen failed to initialize");
         return false;
     }
+    DebugMessage("Done!\n");
 
+    DebugMessage("\tLoading Map...");
     if (!m_mapActive.Load("./data/maps/1.map",m_sdlSpriteList))
     {
         printf("Map Failed to load!");
         return false;
     }
+    DebugMessage("Done!\n");
 
     /*
     if ((m_sdlSurfaceTest = AWG2dSprite::Load("./yoshi.bmp")) == NULL)
@@ -104,15 +111,19 @@ bool AWG2dApp::Init(void)
     */
 
     // Load Background
+    DebugMessage("\tLoading Background...");
     if ((m_sdlSurfaceBackground = AWG2dSprite::Load("./graphics/backgrounds/Water.png")) == NULL )
     {
             return false;
     }
+    DebugMessage("Done!\n");
 
-    AWG2dSprite::Transparent(m_sdlSurfaceTest, 255, 0, 255);
+    //AWG2dSprite::Transparent(m_sdlSurfaceTest, 255, 0, 255);
 
     SDL_EnableKeyRepeat(1,SDL_DEFAULT_REPEAT_INTERVAL/3);
 
+    DebugMessage("Initialization Complete!");
+    
     return true;
 }
 
